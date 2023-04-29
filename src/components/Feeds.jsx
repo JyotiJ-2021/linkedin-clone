@@ -44,8 +44,22 @@ const Feeds = () => {
           <p>view all recomondation</p>
         </div>
       </div>
+      <br />
+      <div className="rightSidebar">
+        <div>follows</div>
+        <hr />
+        {followList.map((item, i) => {
+          return (
+            <div className="feedContainer" key={i}>
+              <div className="addFeed">{item} </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
 
 export default Feeds;
+
+const followList = ["follow1", "follow2", "follow3", "follow4", "follow5"];

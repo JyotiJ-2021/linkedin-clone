@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import Comment from "./Comment";
 
-const DisplayPost = ({ post, handleLike, likes }) => {
+const DisplayPost = ({ post, handleLike, id }) => {
   const [showComments, setshowComments] = useState(false);
 
   const handleCommentClick = () => {
     setshowComments(!showComments);
   };
+
   return (
     <div className="displayContainer">
       <div className="displaypostContainer">
@@ -25,7 +26,8 @@ const DisplayPost = ({ post, handleLike, likes }) => {
       <div className="socials">
         <div className="like" onClick={() => handleLike(post.id)}>
           <p>
-            <i class="bi bi-hand-thumbs-up-fill"></i> {likes}
+            <i class="bi bi-hand-thumbs-up-fill"></i>
+            {post.likes ? 1 : 0}
           </p>
         </div>
         <div className="comment" onClick={handleCommentClick}>

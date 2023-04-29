@@ -1,27 +1,23 @@
 import React, { useState } from "react";
 import DisplayPost from "./DisplayPost";
+import { v4 as uuidv4 } from "uuid";
 
-let id = 0;
 const Posts = ({ name }) => {
   const [post, setPost] = useState("");
   const [postList, setPostList] = useState(
     JSON.parse(localStorage.getItem("postlist")) || []
   );
-  const [likes, setLikes] = useState(
-    JSON.parse(localStorage.getItem("likes")) || 0
-  );
-  const [comment, setComment] = useState(
-    JSON.parse(localStorage.getItem("comment")) || []
-  );
+  const [likes, setLikes] = useState(false);
+  const [comment, setComment] = useState("");
 
   const handlePost = (e) => {
     e.preventDefault();
 
     const posts = {
-      id: id++,
+      id: uuidv4(),
       postedBy: name,
       postText: post,
-      likes: likes,
+      likes: false,
       comments: [
         {
           by: name,
@@ -29,17 +25,24 @@ const Posts = ({ name }) => {
         },
       ],
     };
+
     setPostList([...postList, posts]);
     localStorage.setItem("postlist", JSON.stringify([...postList, posts]));
     setPost("");
   };
 
   const handleLike = (postId) => {
-    // const postIndex = postList.findIndex((post) => post.id === postId);
-    // const newLikes = 1;
-    // setPostList[postIndex].likes = newLikes;
-    // console.log(postList);
-    // localStorage.setItem("likes", JSON.stringify([...postList, posts]));
+    for (let i = 0; i < postList.length; i++) {
+      if (postList[i].id === postId) {
+        if (postList[i].likes === true) {
+          postList[i].likes = false;
+        } else {
+          postList[i].likes = true;
+        }
+      }
+    }
+    window.location.reload();
+    localStorage.setItem("postlist", JSON.stringify(postList));
   };
 
   return (
@@ -47,7 +50,6 @@ const Posts = ({ name }) => {
       <div className="postContent">
         <div className="posts">
           <div className="postImg">
-            {" "}
             <i class="bi bi-camera"></i>
           </div>
           <div className="postInput">
@@ -85,13 +87,14 @@ const Posts = ({ name }) => {
         </div>
       </div>
       {postList.length > 0
-        ? postList.map((e, i) => {
+        ? postList.map((posts, i) => {
             return (
               <DisplayPost
                 key={i}
-                post={e}
+                post={posts}
+                handleLike={handleLike}
                 likes={likes}
-                handleLike={handleLike(e.id)}
+                id={posts.id}
               />
             );
           })
