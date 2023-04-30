@@ -25,9 +25,11 @@ const Posts = ({ name }) => {
         },
       ],
     };
+    const newPostList = [...postList, posts].reverse();
 
-    setPostList([...postList, posts]);
-    localStorage.setItem("postlist", JSON.stringify([...postList, posts]));
+    setPostList(newPostList);
+    localStorage.setItem("postlist", JSON.stringify(newPostList));
+
     setPost("");
   };
 

@@ -5,12 +5,8 @@ import Login from "./pages/login";
 import Signup from "./components/Signup";
 
 function App() {
-  // const user = localStorage.getItem("user");
-  return (
-    <>
-      <Login />
-    </>
-  );
+  const user = localStorage.getItem("user");
+  return <>{user ? <Login /> : <Signup />}</>;
 }
 
 export default App;

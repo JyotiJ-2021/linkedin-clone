@@ -238,11 +238,12 @@ text-align: center;
   position: absolute;
   left: 50%;
   transform: translate(-50%,-50%);
-  border: 1px solid rgb(87, 132, 216);
+  /* border: 1px solid rgb(87, 132, 216); */
   padding: 20px;
   width: 30vw;
   border-radius: 8px;
   text-align: center;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
   .formInput input{
@@ -543,7 +544,7 @@ text-align: center;
 .commentProfile{
   width: 50px;
   height: 45px;
-  background: orange;
+  border: 1px solid lightgrey;
   border-radius: 50%;
 }
 
@@ -617,6 +618,10 @@ text-align: center;
 
   .mbheader .headerLogo{
     display: flex;
+  }
+
+  .loginContent{
+    width: 80vw;
   }
 
  

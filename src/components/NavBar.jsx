@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 
 const NavBar = ({ name, password, logout }) => {
   return (
@@ -25,6 +26,11 @@ const NavBar = ({ name, password, logout }) => {
               </div>
             );
           })}
+        </div>
+        <div>
+          <Button style={{ marginTop: "-7px" }} onClick={() => logout()}>
+            Logout
+          </Button>
         </div>
       </div>
       <div className="mbheader">

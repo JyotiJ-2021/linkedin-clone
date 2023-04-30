@@ -26,12 +26,14 @@ const Comment = () => {
           </form>
         </div>
       </div>
-      <div className="comments">
-        <div className="commetorDetails">
-          <p>{comment}</p>
+      {comment !== "" && (
+        <div className="comments">
+          <div className="commetorDetails">
+            <p>{comment}</p>
+          </div>
+          <div className="comment_content"></div>
         </div>
-        <div className="comment_content"></div>
-      </div>
+      )}
     </div>
   );
 };
